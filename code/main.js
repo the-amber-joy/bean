@@ -15,10 +15,16 @@ kaboom({
 
 // load assets
 loadSprite("bean", "sprites/bean.png");
+loadSprite("cloud", "sprites/cloud.png");
 
 let highScore = window.localStorage.getItem("highScore") || 0;
 
 scene("game", () => {
+  layers([
+    "bg",
+    "game",
+], "game")
+
   // define gravity
   gravity(2400);
 
@@ -73,8 +79,23 @@ scene("game", () => {
     wait(rand(0.5, 1.5), spawnTree);
   }
 
-  // start spawning trees
+  function spawnCloud() {
+    add([
+      sprite("cloud"),
+      scale(rand(.1, .3)),
+      pos(width(), rand(height()/8, height()/1) - FLOOR_HEIGHT),
+      origin("botleft"),
+      move(LEFT, SPEED / rand(6, 9)),
+      layer("bg"),
+      "tree",
+    ]);
+
+    wait(rand(3, 5), spawnCloud);
+  }
+
+  // start spawning trees & clouds
   spawnTree();
+  spawnCloud();
 
   // lose if player collides with any game obj with tag "tree"
   player.onCollide("tree", () => {
