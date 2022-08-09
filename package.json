@@ -1,0 +1,18 @@
+{
+	"name": "kaboom-env",
+	"dependencies": {
+		"@replit/database": "^2.0.1",
+		"esbuild": "^0.14.13",
+		"express": "^4.17.1",
+		"kaboom": "^2000.2.9",
+		"stacktrace-js": "^2.0.2",
+		"ws": "^8.2.0"
+	},
+	"scripts": {
+		"start": "node run.js",
+		"nodemon": "nodemon run.js"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.19"
+	}
+}
